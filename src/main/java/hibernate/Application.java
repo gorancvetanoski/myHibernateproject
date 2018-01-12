@@ -11,35 +11,38 @@ public class Application {
 
     public static void main(String[] args) {
 
-        Department department = new Department();
-        department.setIdDept(1);
-        department.setDeparmentName("IT");
-        department.setCostCentar("77889");
+        ApplicationDAO dao = new ApplicationDAO();
+
+
+        Department department1 = new Department();
+        department1.setIdDept(1);
+        department1.setDeparmentName("IT-NEW");
+        department1.setCostCentar("77889");
+        /*--------Update---------
+        dao.Update(department1);
+        ----------END-------------*/
+
+        Department department2 = new Department();
+        department2.setIdDept(2);
+        department2.setDeparmentName("SALES");
+        department2.setCostCentar("4555");
+        /*--------Update---------
+        dao.Update(department);
+         ----------END-------------*/
 
         Employer emp = new Employer();
         emp.setfName("Goran");
-        emp.setlName("Cvetanoski");
+        emp.setlName("Cvetanoski-N");
         emp.setSallary(123654);
         emp.setIdEmploy(101);
-        emp.setEmplDepartment(department);
+        emp.setEmplDepartment(department1);
+        /*--------Update---------
+        dao.Update(emp);
+        ----------END-------------*/
 
-        org.hibernate.cfg.Configuration configuration = new org.hibernate.cfg.Configuration();
-        configuration.configure().addAnnotatedClass(Employer.class).addAnnotatedClass(Department.class);
-
-        StandardServiceRegistryBuilder builder =
-                new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
+        System.out.println(dao.GetByID(101));
 
 
-        SessionFactory sf = configuration.buildSessionFactory(builder.build());
-
-        Session session = sf.openSession();
-
-        Transaction tx = session.beginTransaction();
-
-        session.save(department);
-        session.save(emp);
-
-        tx.commit();
 
     }
 }
