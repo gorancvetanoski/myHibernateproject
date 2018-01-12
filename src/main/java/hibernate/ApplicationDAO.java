@@ -81,12 +81,18 @@ public class ApplicationDAO {
     {
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
+        try {
 
 
-        Query query = session.createQuery("from Employer where idEmploy= :idEmploy")
-                .setString("idEmploy",String.valueOf(idEmploy));
 
-        return (Employer)query.uniqueResult();
+            Query query = session.createQuery("from Employer where idEmploy= :idEmploy")
+                    .setString("idEmploy", String.valueOf(idEmploy));
+
+            return (Employer) query.uniqueResult();
+        }
+        finally {
+            tx.commit();
+        }
 
     }
 
@@ -95,11 +101,29 @@ public class ApplicationDAO {
     {
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
+        try {
 
-
-        Query query = session.createQuery("from Employer");
-
-        return query.list();
-
+            Query query = session.createQuery("from Employer");
+            tx.commit();
+            return query.list();
+        }
+        finally {
+            tx.commit();
+        }
     }
+
+
+    public List<Object []> GetEmployDepartments()
+    {
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+        try {
+        Query query = session.createQuery("select e.fName,e.lName,d.DeparmentName from Employer e, Department d  where e.emp_dep_id = d.idDept");
+        return query.list();
+        }
+        finally {
+            tx.commit();
+        }
+    }
+
 }

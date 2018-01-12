@@ -6,6 +6,8 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.service.ServiceRegistry;
 
+import java.util.List;
+
 
 public class Application {
 
@@ -48,6 +50,15 @@ public class Application {
         for (Employer employ: dao.GetAll()
              ) {
                 System.out.println(employ);
+        }
+
+        List<Object[]> result = dao.GetEmployDepartments();
+
+        for (Object[] fEmp: result
+             ) {
+
+            System.out.println(fEmp[0]+" : "+fEmp[1]+" : "+fEmp[2]);
+
         }
 
     }
