@@ -40,9 +40,15 @@ public class Application {
         dao.Update(emp);
         ----------END-------------*/
 
+
         System.out.println(dao.GetByID(101));
 
+        System.out.println("---------------------------------------------------------");
 
+        for (Employer employ: dao.GetAll()
+             ) {
+                System.out.println(employ);
+        }
 
     }
 }

@@ -6,6 +6,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ApplicationDAO {
 
     private org.hibernate.cfg.Configuration configuration;
@@ -79,9 +82,24 @@ public class ApplicationDAO {
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
 
+
         Query query = session.createQuery("from Employer where idEmploy= :idEmploy")
                 .setString("idEmploy",String.valueOf(idEmploy));
 
         return (Employer)query.uniqueResult();
+
+    }
+
+
+    public List<Employer> GetAll()
+    {
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+
+
+        Query query = session.createQuery("from Employer");
+
+        return query.list();
+
     }
 }
