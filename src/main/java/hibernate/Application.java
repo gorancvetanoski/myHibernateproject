@@ -7,6 +7,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.service.ServiceRegistry;
 
 import java.util.List;
+import java.util.Map;
 
 
 public class Application {
@@ -43,7 +44,7 @@ public class Application {
         ----------END-------------*/
 
 
-        System.out.println(dao.GetByID(101));
+        /*System.out.println(dao.GetByID(101));
 
         System.out.println("---------------------------------------------------------");
 
@@ -52,13 +53,19 @@ public class Application {
                 System.out.println(employ);
         }
 
-        List<Object[]> result = dao.GetEmployDepartments();
+        List<Object[]> result = dao.GetEmployByDepartments(1);
 
-        for (Object[] fEmp: result
-             ) {
-
+        for (Object[] fEmp: result) {
             System.out.println(fEmp[0]+" : "+fEmp[1]+" : "+fEmp[2]);
+        }*/
 
+        System.out.println("-Goran Cvetanoski-");
+
+        List<Map> lstMap = dao.NativeQuery();
+
+        for(Map map: lstMap)
+        {
+            System.out.println(map.get("0")+" : "+map.get("1"));
         }
 
     }
