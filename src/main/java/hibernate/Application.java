@@ -61,12 +61,12 @@ public class Application {
 
         System.out.println("-Goran Cvetanoski-");
 
-        List<Map> lstMap = dao.NativeQuery();
+       /* List<Map> lstMap = dao.NativeQuery1();
 
         for(Map map: lstMap)
         {
             System.out.println(map.get("0")+" : "+map.get("1"));
-        }
+        }*/
 
     }
 }
