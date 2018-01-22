@@ -15,7 +15,7 @@ public class GreetingController {
     private final AtomicLong counter = new AtomicLong();
 
     @RequestMapping(value = "/greeting", method = RequestMethod.GET)
-    public Greeting greeting(@AuthenticationPrincipal final UserDetails userDetail, @RequestParam(value="name", defaultValue="World") String name) {
+    public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
        /* String userName = userDetail.getUsername();
         Collection<? extends GrantedAuthority> authorities = userDetail.getAuthorities();
         authorities.forEach(System.out::println);*/
