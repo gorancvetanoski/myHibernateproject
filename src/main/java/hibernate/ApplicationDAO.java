@@ -1,13 +1,11 @@
 package hibernate;
 
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.hibernate.*;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class ApplicationDAO {
 
@@ -118,8 +116,43 @@ public class ApplicationDAO {
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
         try {
-        Query query = session.createQuery("select e.fName,e.lName,d.DeparmentName from Employer e, Department d  where e.emp_dep_id = d.idDept");
+        Query query = session.createQuery("select e.fName,e.lName,d.DeparmentName from Employer e, Department d  where e.emplDepartment = d.idDept");
         return query.list();
+        }
+        finally {
+            tx.commit();
+        }
+    }
+
+    public List<Object []> GetEmployByDepartments(int idDepartment)
+    {
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+        try {
+            Query query = session.createQuery("select e.fName,e.lName,d.DeparmentName from Employer e, Department d  where e.emplDepartment = d.idDept and d.idDept=:department")
+                    .setParameter("department",idDepartment);
+            return query.list();
+        }
+        finally {
+            tx.commit();
+        }
+    }
+
+    public List<Map> NativeQuery ()
+    {
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+        try {
+            Query query = session.createQuery("select fName,lName from Employer")
+                    .setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+            List test =query.list();
+            List<Map> lst = new ArrayList<>();
+            for(Object obj: test)
+            {
+                Map m = (Map)obj;
+                lst.add(m);
+            }
+            return lst;
         }
         finally {
             tx.commit();

@@ -5,40 +5,43 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.service.ServiceRegistry;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 import java.util.List;
 import java.util.Map;
+
 
 
 public class Application {
 
     public static void main(String[] args) {
 
-        ApplicationDAO dao = new ApplicationDAO();
+       // ApplicationDAO dao = new ApplicationDAO();
 
 
-        Department department1 = new Department();
-        department1.setIdDept(1);
-        department1.setDeparmentName("IT-NEW");
-        department1.setCostCentar("77889");
+       // Department department1 = new Department();
+        //department1.setIdDept(1);
+       // department1.setDeparmentName("IT-NEW");
+       // department1.setCostCentar("77889");
         /*--------Update---------
         dao.Update(department1);
         ----------END-------------*/
 
-        Department department2 = new Department();
-        department2.setIdDept(2);
-        department2.setDeparmentName("SALES");
-        department2.setCostCentar("4555");
+       // Department department2 = new Department();
+      //  department2.setIdDept(2);
+//        department2.setCostCentar("4555");
         /*--------Update---------
         dao.Update(department);
          ----------END-------------*/
 
-        Employer emp = new Employer();
-        emp.setfName("Goran");
-        emp.setlName("Cvetanoski-N");
-        emp.setSallary(123654);
-        emp.setIdEmploy(101);
-        emp.setEmplDepartment(department1);
+     //   Employer emp = new Employer();
+      //  emp.setfName("Goran");
+     //   emp.setlName("Cvetanoski-N");
+      //  emp.setSallary(123654);
+      //  emp.setIdEmploy(101);
+      //  emp.setEmplDepartment(department1);
         /*--------Update---------
         dao.Update(emp);
         ----------END-------------*/
@@ -59,7 +62,7 @@ public class Application {
             System.out.println(fEmp[0]+" : "+fEmp[1]+" : "+fEmp[2]);
         }*/
 
-        System.out.println("-Goran Cvetanoski-");
+       /* System.out.println("-Goran Cvetanoski-");
 
        /* List<Map> lstMap = dao.NativeQuery1();
 
